@@ -1,13 +1,19 @@
+body {
+  background-color: rgb(220, 220, 220);
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  
 }
 
 nav {
   border: black solid;
   border-radius: 10px;
+  background-color: white;
 }
 
 .menu {
@@ -22,17 +28,32 @@ nav {
   font-size: large;
 }
 
+.article-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .article-card {
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   border: solid black;
+  border-radius: 10px;
   list-style: none;
+  background-color: white;
+  color: black;
+  padding: 10px;
 }
 
 .article-card-img {
-  max-width: 500px;
+  max-width: 80%;
+  align-self: center;
 }
 
 .article-card-footer {
+  background-color:  rgb(220, 220, 220);
+  border-radius: 10px;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
