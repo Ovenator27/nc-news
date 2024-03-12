@@ -5,7 +5,7 @@ export default function Header() {
     <nav>
       <ul className="menu">
         <li>NC News</li>
-        <li>Topics</li>
+        <Link to='/topics'><li>Topics</li></Link>
         <Link to='/articles'><li>Articles</li></Link>
         <li>Users</li>
         <button className='add-article'>+</button>

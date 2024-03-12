@@ -6,6 +6,7 @@ import Home from "./Components/Home";
 import Articles from "./Components/Articles";
 import SingleArticle from "./Components/SingleArticle";
 import UserContext from "./Contexts/SignedInUser";
+import Topics from "./Components/Topics";
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({
@@ -26,6 +27,7 @@ function App() {
             element={<Articles />}
           />
           <Route path={`/articles/:articleId`} element={<SingleArticle />} />
+          <Route path="/topics" element={<Topics />} />
         </Routes>
       </UserContext.Provider>
     </>
