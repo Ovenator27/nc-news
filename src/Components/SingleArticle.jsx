@@ -12,12 +12,13 @@ export default function SingleArticle() {
   const [isLoading, setIsLoading] = useState(true);
   const { signedInUser } = useContext(UserContext);
   const [commentInput, setCommentInput] = useState("");
-  const [commentSubmit, setCommentSubmit] = useState(false)
-  
+  const [commentSubmit, setCommentSubmit] = useState(false);
+  const [commentError, setCommentError] = useState(null);
+
   useEffect(() => {
     setIsLoading(true);
-    const article = getSingleArticle(articleId)
-    const comments = getComments(articleId)
+    const article = getSingleArticle(articleId);
+    const comments = getComments(articleId);
     Promise.all([article, comments]).then(
       ([
         {
@@ -36,20 +37,23 @@ export default function SingleArticle() {
 
   function handleSubmit(e) {
     if (commentSubmit === false) {
-      setCommentSubmit(true)
+      setCommentSubmit(true);
       e.preventDefault();
       const body = {
         username: signedInUser.username,
         body: commentInput,
       };
       postComment(articleId, body)
-        .then(({data: {comment}}) => {
-          setCommentsList((currList) => {
-            return [comment, ...currList]
-          })
-          setCommentInput("");
-          setCommentSubmit(false)
+      .then(({ data: { comment } }) => {
+        setCommentsList((currList) => {
+          return [comment, ...currList];
         });
+        setCommentInput("");
+        setCommentSubmit(false);
+      })
+      .catch((err)=> {
+        setCommentError(`${err.message} - comment not posted`)
+      })
     }
   }
 
@@ -74,6 +78,7 @@ export default function SingleArticle() {
             }}
             required
           ></textarea>
+          <div className="error-text">{commentError}</div>
           <button>Comment</button>
         </form>
         <ul>
