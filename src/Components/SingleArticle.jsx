@@ -14,25 +14,30 @@ export default function SingleArticle() {
   const [commentInput, setCommentInput] = useState("");
   const [commentSubmit, setCommentSubmit] = useState(false);
   const [commentError, setCommentError] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
     const article = getSingleArticle(articleId);
     const comments = getComments(articleId);
-    Promise.all([article, comments]).then(
-      ([
-        {
-          data: { article },
-        },
-        {
-          data: { comments },
-        },
-      ]) => {
-        setArticleInfo([article]);
-        setCommentsList(comments);
-        setIsLoading(false);
-      }
-    );
+    Promise.all([article, comments])
+      .then(
+        ([
+          {
+            data: { article },
+          },
+          {
+            data: { comments },
+          },
+        ]) => {
+          setArticleInfo([article]);
+          setCommentsList(comments);
+          setIsLoading(false);
+        }
+      )
+      .catch(({ response }) => {
+        setError(response);
+      });
   }, []);
 
   function handleSubmit(e) {
@@ -44,19 +49,26 @@ export default function SingleArticle() {
         body: commentInput,
       };
       postComment(articleId, body)
-      .then(({ data: { comment } }) => {
-        setCommentsList((currList) => {
-          return [comment, ...currList];
+        .then(({ data: { comment } }) => {
+          setCommentsList((currList) => {
+            return [comment, ...currList];
+          });
+          setCommentInput("");
+          setCommentSubmit(false);
+        })
+        .catch((err) => {
+          setCommentError(`${err.message} - comment not posted`);
         });
-        setCommentInput("");
-        setCommentSubmit(false);
-      })
-      .catch((err)=> {
-        setCommentError(`${err.message} - comment not posted`)
-      })
     }
   }
 
+  if (error) {
+    return (
+      <h1>
+        {error.status}: {error.data.msg}
+      </h1>
+    );
+  }
   return isLoading ? (
     <h1>Loading Article</h1>
   ) : (

@@ -8,6 +8,7 @@ import SingleArticle from "./Components/SingleArticle";
 import UserContext from "./Contexts/SignedInUser";
 import Topics from "./Components/Topics";
 import SingleTopic from "./Components/SingleTopic";
+import ErrorPage from "./Components/ErrorPage";
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({
@@ -30,6 +31,7 @@ function App() {
           <Route path={`/articles/:articleId`} element={<SingleArticle />} />
           <Route path="/topics" element={<Topics />} />
           <Route path={`/topics/:slug`} element={<SingleTopic />} />
+          <Route path="*" element={<ErrorPage />}/>
         </Routes>
       </UserContext.Provider>
     </>
