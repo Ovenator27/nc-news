@@ -43,7 +43,7 @@ ul {
   border: solid black;
   border-radius: 10px;
   background-color: white;
-  padding: 10px;
+  padding: 10px 20px;
 }
 
 .article-card {
@@ -76,3 +76,17 @@ ul {
   text-align: left;
   border-bottom: solid black;
 }
+
+form {
+  width: 100%;
+  flex-direction: column;
+  text-align: left;
+}
+
+.comment-input {
+  margin-top: 10px;
+  width: 100%;
+  height: 10em;
+}
+
+

@@ -1,25 +1,33 @@
 import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import ArticleIdContext from "./Contexts/ArticleId";
 import Header from "./Components/Header";
 import Home from "./Components/Home";
 import Articles from "./Components/Articles";
 import SingleArticle from "./Components/SingleArticle";
+import UserContext from "./Contexts/SignedInUser";
 
 function App() {
-  const [articleId, setArticleId] = useState(null);
+  const [signedInUser, setSignedInUser] = useState({
+    username: "tickle122",
+    name: "Tom Tickle",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
+  });
 
   return (
     <>
-      <ArticleIdContext.Provider value={{ articleId, setArticleId }}>
+      <UserContext.Provider value={{ signedInUser, setSignedInUser }}>
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<Articles />} />
+          <Route
+            path="/articles"
+            element={<Articles />}
+          />
           <Route path={`/articles/:articleId`} element={<SingleArticle />} />
         </Routes>
-      </ArticleIdContext.Provider>
+      </UserContext.Provider>
     </>
   );
 }

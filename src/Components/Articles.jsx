@@ -1,15 +1,13 @@
 import axios from "axios";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import ChangePage from "./ChangePage";
 import { Link } from "react-router-dom";
-import ArticleIdContext from "../Contexts/ArticleId";
 
 export default function Articles() {
   const [articleList, setArticleList] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setisLoading] = useState(true)
-  const { setArticleId } = useContext(ArticleIdContext);
 
   useEffect(() => {
     setisLoading(true)
@@ -31,9 +29,6 @@ export default function Articles() {
           return (
             <Link
               key={article.article_id}
-              onClick={() => {
-                setArticleId(article.article_id);
-              }}
               to={`/articles/${article.article_id}`}
             >
               <ArticleCard article={article} setArticleList={setArticleList} />
