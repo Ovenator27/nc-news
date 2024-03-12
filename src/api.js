@@ -27,11 +27,3 @@ export function postComment (articleId, body) {
 export function deleteComment (commentId) {
     return api.delete(`comments/${commentId}`)
 }
-
-// exports.postRequest = (url, body) => {
-//   return axios.post(url, body);
-// };
-
-// exports.deleteRequest = (url) => {
-//   return axios.delete(url);
-// };
