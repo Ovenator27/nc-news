@@ -7,6 +7,7 @@ import Articles from "./Components/Articles";
 import SingleArticle from "./Components/SingleArticle";
 import UserContext from "./Contexts/SignedInUser";
 import Topics from "./Components/Topics";
+import SingleTopic from "./Components/SingleTopic";
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({
@@ -28,6 +29,7 @@ function App() {
           />
           <Route path={`/articles/:articleId`} element={<SingleArticle />} />
           <Route path="/topics" element={<Topics />} />
+          <Route path={`/topics/:slug`} element={<SingleTopic />} />
         </Routes>
       </UserContext.Provider>
     </>

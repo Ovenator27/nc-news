@@ -46,7 +46,7 @@ ul {
   padding: 10px 20px;
 }
 
-.article-card {
+.article-card, .topic-card {
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -97,4 +97,8 @@ form {
   color: red;
 }
 
+.topic-card-heading {
+  font-size: xx-large;
+  margin: 0px
+}
 
