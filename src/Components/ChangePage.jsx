@@ -1,4 +1,4 @@
-export default function ChangePage({setPage, page}) {
+export default function ChangePage({ setPage, page, pageCount }) {
   return (
     <div>
       <button
@@ -14,9 +14,11 @@ export default function ChangePage({setPage, page}) {
       </button>
       <button
         onClick={() => {
-          setPage((currPage) => {
-            return (currPage = currPage + 1);
-          });
+          if (page < pageCount) {
+            setPage((currPage) => {
+              return (currPage = currPage + 1);
+            });
+          }
         }}
       >
         Next page
