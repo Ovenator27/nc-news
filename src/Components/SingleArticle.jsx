@@ -6,10 +6,12 @@ import CommentCard from "./CommentCard";
 
 export default function SingleArticle() {
   const { articleId } = useParams();
-  const [articleInfo, setArticleInfo] = useState({});
+  const [articleInfo, setArticleInfo] = useState([]);
   const [commentsList, setCommentsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setIsLoading(true)
     const article = axios.get(
       `https://northcoders-news-03ck.onrender.com/api/articles/${articleId}`
     );
@@ -25,15 +27,16 @@ export default function SingleArticle() {
           data: { comments },
         },
       ]) => {
-        setArticleInfo(article);
+        setArticleInfo([article]);
         setCommentsList(comments);
+        setIsLoading(false)
       }
     );
   }, []);
 
-  return (
+  return ( isLoading ? <h1>Loading Article</h1> : 
     <>
-      <ArticleCard article={articleInfo} />
+      <ArticleCard article={articleInfo[0]} setArticleList={setArticleInfo} />
       <h2>Comments</h2>
       <ul className="comments-list">
         {commentsList.map((comment) => {
