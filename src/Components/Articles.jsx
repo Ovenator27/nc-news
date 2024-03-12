@@ -1,26 +1,26 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import ChangePage from "./ChangePage";
 import { Link } from "react-router-dom";
+import { getAllArticles } from "../api";
 
 export default function Articles() {
   const [articleList, setArticleList] = useState([]);
   const [page, setPage] = useState(1);
-  const [isLoading, setisLoading] = useState(true)
+  const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
-    setisLoading(true)
-    axios
-      .get(`https://northcoders-news-03ck.onrender.com/api/articles?p=${page}`)
-      .then(({ data: { articles } }) => {
-        setArticleList(articles);
-        window.scrollTo(0, 0);
-        setisLoading(false)
-      });
+    setisLoading(true);
+    getAllArticles(page).then(({ data: { articles } }) => {
+      setArticleList(articles);
+      window.scrollTo(0, 0);
+      setisLoading(false);
+    });
   }, [page]);
 
-  return ( isLoading ? <h1>Loading Articles</h1> :
+  return isLoading ? (
+    <h1>Loading Articles</h1>
+  ) : (
     <div>
       <h1>Articles</h1>
       <ChangePage setPage={setPage} page={page} />

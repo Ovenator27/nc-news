@@ -1,4 +1,4 @@
-import axios from "axios";
+import { patchArticle } from "../api";
 
 export default function ArticleCard({ article, setArticleList }) {
 
@@ -16,10 +16,7 @@ export default function ArticleCard({ article, setArticleList }) {
     const body = {
       inc_votes: e.target.id,
     };
-    axios.patch(
-      `https://northcoders-news-03ck.onrender.com/api/articles/${e.target.value}`,
-      body
-    );
+    patchArticle(e.target.value, body)
   }
 
   return (

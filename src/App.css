@@ -89,4 +89,8 @@ form {
   height: 10em;
 }
 
+.delete-button {
+  background-color: rgb(255, 119, 119);
+}
+
 

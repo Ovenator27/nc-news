@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import CommentCard from "./CommentCard";
 import UserContext from "../Contexts/SignedInUser";
+import { getComments, getSingleArticle, postComment } from "../api";
 
 export default function SingleArticle() {
   const { articleId } = useParams();
@@ -15,12 +16,8 @@ export default function SingleArticle() {
   
   useEffect(() => {
     setIsLoading(true);
-    const article = axios.get(
-      `https://northcoders-news-03ck.onrender.com/api/articles/${articleId}`
-    );
-    const comments = axios.get(
-      `https://northcoders-news-03ck.onrender.com/api/articles/${articleId}/comments`
-    );
+    const article = getSingleArticle(articleId)
+    const comments = getComments(articleId)
     Promise.all([article, comments]).then(
       ([
         {
@@ -43,11 +40,7 @@ export default function SingleArticle() {
       username: signedInUser.username,
       body: commentInput,
     };
-    axios
-      .post(
-        `https://northcoders-news-03ck.onrender.com/api/articles/${articleId}/comments`,
-        body
-      )
+    postComment(articleId, body)
       .then(({data: {comment}}) => {
         setCommentsList((currList) => {
           return [comment, ...currList]
