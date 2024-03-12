@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <nav>
       <ul className="menu">
-        <li>NC News</li>
+        <Link to={'/'}><li>NC News</li></Link>
         <Link to='/topics'><li>Topics</li></Link>
         <Link to='/articles'><li>Articles</li></Link>
         <li>Users</li>
