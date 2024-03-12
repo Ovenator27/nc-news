@@ -102,3 +102,8 @@ form {
   margin: 0px
 }
 
+.sort-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

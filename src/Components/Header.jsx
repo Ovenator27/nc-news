@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import UserContext from "../Contexts/SignedInUser";
+import { useContext } from "react";
 
 export default function Header() {
+  const { signedInUser } = useContext(UserContext);
+
   return (
     <nav>
       <ul className="menu">
@@ -9,6 +13,7 @@ export default function Header() {
         <Link to='/articles'><li>Articles</li></Link>
         <li>Users</li>
         <button className='add-article'>+</button>
+        <li>{signedInUser.username}</li>
       </ul>
     </nav>
   );

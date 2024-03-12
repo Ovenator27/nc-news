@@ -1,24 +1,37 @@
 import { useEffect, useState } from "react";
 import ArticleCard from "./ArticleCard";
 import ChangePage from "./ChangePage";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { getAllArticles } from "../api";
 
 export default function Articles() {
   const [articleList, setArticleList] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageCount, setPageCount] = useState(0)
+  const [pageCount, setPageCount] = useState(0);
   const [isLoading, setisLoading] = useState(true);
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderBy, setOrderBy] = useState("desc");
+  let [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setisLoading(true);
-    getAllArticles(page).then(({ data: { articles, total_count } }) => {
-      setPageCount(Math.ceil(total_count/10));
+    getAllArticles(page, sortBy, orderBy).then(({ data: { articles, total_count } }) => {
+      setPageCount(Math.ceil(total_count / 10));
       setArticleList(articles);
       window.scrollTo(0, 0);
+      setSearchParams({sort_by: sortBy, order_by: orderBy})
       setisLoading(false);
     });
-  }, [page]);
+  }, [page, sortBy, orderBy]);
+
+  function handleOrderBy(e) {
+    e.preventDefault();
+    if (orderBy === "desc") {
+      setOrderBy("asc");
+    } else {
+      setOrderBy("desc");
+    }
+  }
 
   return isLoading ? (
     <h1>Loading Articles</h1>
@@ -26,6 +39,25 @@ export default function Articles() {
     <>
       <h1>Articles</h1>
       <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
+      <div className="sort-bar">
+        <div>
+          <label>Sort articles by: </label>
+          <select
+            value={sortBy}
+            onChange={(e) => {
+              setSortBy(e.target.value);
+            }}
+          >
+            <option value="created_at">created date</option>
+            <option value="comment_count">comments</option>
+            <option value="votes">votes</option>
+          </select>
+        </div>
+        <div>
+          <label>Order by:</label>
+          <button onClick={handleOrderBy}>{orderBy}ending</button>
+        </div>
+      </div>
       <ul className="article-list">
         {articleList.map((article) => {
           return (
@@ -38,7 +70,7 @@ export default function Articles() {
           );
         })}
       </ul>
-      <ChangePage setPage={setPage} page={page} pageCount={pageCount}/>
+      <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <p>Page: {page}</p>
     </>
   );
