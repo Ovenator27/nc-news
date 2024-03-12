@@ -23,7 +23,7 @@ export default function Articles() {
   return isLoading ? (
     <h1>Loading Articles</h1>
   ) : (
-    <div>
+    <>
       <h1>Articles</h1>
       <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <ul className="article-list">
@@ -40,6 +40,6 @@ export default function Articles() {
       </ul>
       <ChangePage setPage={setPage} page={page} pageCount={pageCount}/>
       <p>Page: {page}</p>
-    </div>
+    </>
   );
 }
