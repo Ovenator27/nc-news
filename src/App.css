@@ -93,4 +93,8 @@ form {
   background-color: rgb(255, 119, 119);
 }
 
+.error-text {
+  color: red;
+}
+
 

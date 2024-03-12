@@ -1,6 +1,8 @@
 import { patchArticle } from "../api";
+import { useState } from "react";
 
 export default function ArticleCard({ article, setArticleList }) {
+  const [error, setError] = useState(null);
 
   function handleLike(e) {
     e.preventDefault();
@@ -16,7 +18,18 @@ export default function ArticleCard({ article, setArticleList }) {
     const body = {
       inc_votes: e.target.id,
     };
-    patchArticle(e.target.value, body)
+    patchArticle(e.target.value, body).catch((err) => {
+      setError(`${err.message} - vote failed`)
+      setArticleList((currList) => {
+        const newList = currList.map((item) => {
+          if (item.article_id === +e.target.value) {
+            item.votes = item.votes - +e.target.id;
+          }
+          return item;
+        });
+        return newList;
+      });
+    });
   }
 
   return (
@@ -40,6 +53,7 @@ export default function ArticleCard({ article, setArticleList }) {
         </p>
         <p>topic: {article.topic}</p>
       </div>
+      <div className="error-text">{error}</div>
     </li>
   );
 }

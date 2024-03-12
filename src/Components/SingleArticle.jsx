@@ -12,6 +12,7 @@ export default function SingleArticle() {
   const [isLoading, setIsLoading] = useState(true);
   const { signedInUser } = useContext(UserContext);
   const [commentInput, setCommentInput] = useState("");
+  const [commentSubmit, setCommentSubmit] = useState(false)
   
   useEffect(() => {
     setIsLoading(true);
@@ -34,18 +35,22 @@ export default function SingleArticle() {
   }, []);
 
   function handleSubmit(e) {
-    e.preventDefault();
-    const body = {
-      username: signedInUser.username,
-      body: commentInput,
-    };
-    postComment(articleId, body)
-      .then(({data: {comment}}) => {
-        setCommentsList((currList) => {
-          return [comment, ...currList]
-        })
-        setCommentInput("");
-      });
+    if (commentSubmit === false) {
+      setCommentSubmit(true)
+      e.preventDefault();
+      const body = {
+        username: signedInUser.username,
+        body: commentInput,
+      };
+      postComment(articleId, body)
+        .then(({data: {comment}}) => {
+          setCommentsList((currList) => {
+            return [comment, ...currList]
+          })
+          setCommentInput("");
+          setCommentSubmit(false)
+        });
+    }
   }
 
   return isLoading ? (
