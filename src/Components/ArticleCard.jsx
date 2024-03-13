@@ -42,7 +42,7 @@ export default function ArticleCard({ article, setArticleList }) {
       <p>{article.body}</p>
       <div className="article-card-footer">
         <p>{article.comment_count} comments</p>
-        <p>
+        <div>
         {article.votes} votes{" "}
         <div>
           <button value={article.article_id} id="1" onClick={handleLike}>
@@ -52,7 +52,7 @@ export default function ArticleCard({ article, setArticleList }) {
             -
           </button>{" "}
           </div>
-        </p>
+        </div>
         <p>topic: {article.topic}</p>
       </div>
       <div className="error-text">{voteError}</div>
