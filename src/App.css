@@ -95,6 +95,10 @@ ul {
   padding: 10px;
 }
 
+.article-card {
+  max-width: 700px;
+}
+
 .topic-card {
   min-width: 300px;
 }
