@@ -8,12 +8,14 @@ export default function Header() {
   return (
     <nav>
       <ul className="menu">
-        <Link to={'/'}><li>NC News</li></Link>
-        <Link to={'/topics'}><li>Topics</li></Link>
-        <Link to={'/articles'}><li>Articles</li></Link>
-        <Link to={'/users'}><li>Users</li></Link>
-        <li>Post</li>
-        <li>{signedInUser.username}</li>
+        <div className="menu-links">
+        <Link to={'/'}><li className="menu-item">NC News</li></Link>
+        <Link to={'/topics'} className="menu-item"><li>Topics</li></Link>
+        <Link to={'/articles'} className="menu-item"><li>Articles</li></Link>
+        <Link to={'/users'} className="menu-item"><li>Users</li></Link>
+        <li className="menu-item">Post</li>
+        </div>
+        <li className="header-user"><img src={signedInUser.avatar_url} className="header-user-img"/>{signedInUser.username}</li>
       </ul>
     </nav>
   );
