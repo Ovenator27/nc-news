@@ -9,6 +9,7 @@ import UserContext from "./Contexts/SignedInUser";
 import Topics from "./Components/Topics";
 import SingleTopic from "./Components/SingleTopic";
 import ErrorPage from "./Components/ErrorPage";
+import Users from "./Components/Users";
 
 function App() {
   const [signedInUser, setSignedInUser] = useState({
@@ -32,6 +33,7 @@ function App() {
           <Route path="/topics" element={<Topics />} />
           <Route path={`/topics/:slug`} element={<SingleTopic />} />
           <Route path="*" element={<ErrorPage />}/>
+          <Route path="/users" element={<Users />} />
         </Routes>
       </UserContext.Provider>
     </>

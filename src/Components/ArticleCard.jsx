@@ -35,7 +35,7 @@ export default function ArticleCard({ article, setArticleList }) {
   return (
     <li className="article-card">
       <div className="article-card-header">
-        <p>{article.title}</p>
+        <h2>{article.title}</h2>
         <p>posted by: {article.author}</p>
       </div>
       <img className="article-card-img" src={article.article_img_url} />

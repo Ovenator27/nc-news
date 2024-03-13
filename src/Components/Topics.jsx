@@ -20,7 +20,7 @@ export default function Topics() {
   ) : (
   <>
   <h1>Topics</h1>
-  <ul className="topics-list">
+  <ul className="topic-list">
     {topicList.map((topic) => {
         return <Link key={topic.slug} to={`/topics/${topic.slug}`}> <TopicCard  topic={topic} /></Link>
     })}

@@ -74,7 +74,7 @@ export default function SingleArticle() {
   ) : (
     <>
       <ArticleCard article={articleInfo[0]} setArticleList={setArticleInfo} />
-      <div className="comments-list">
+      <div className="comment-list">
         <form onSubmit={handleSubmit}>
           <label htmlFor="comment-body">
             Comment as {signedInUser.username}

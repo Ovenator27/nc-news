@@ -7,7 +7,6 @@ body {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  
 }
 
 nav {
@@ -32,10 +31,17 @@ ul {
   font-size: large;
 }
 
-.article-list, .comments-list {
+.article-list,
+.comment-list {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.topic-list, .user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .comments-list {
@@ -46,7 +52,9 @@ ul {
   padding: 10px 20px;
 }
 
-.article-card, .topic-card {
+.article-card,
+.topic-card,
+.user-card {
   display: flex;
   flex-direction: column;
   margin: 10px;
@@ -58,13 +66,34 @@ ul {
   padding: 10px;
 }
 
+.topic-card {
+  min-width: 300px;
+}
+
 .article-card-img {
   max-width: 80%;
   align-self: center;
 }
 
+.user-img-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid black;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  padding: 25px;
+}
+
+.user-img {
+  align-self: center;
+  max-width: 85%;
+  max-height: 85%;
+}
+
 .article-card-footer {
-  background-color:  rgb(220, 220, 220);
+  background-color: rgb(220, 220, 220);
   border-radius: 10px;
   display: flex;
   justify-content: space-around;
@@ -99,11 +128,15 @@ form {
 
 .topic-card-heading {
   font-size: xx-large;
-  margin: 0px
+  margin: 0px;
 }
 
 .sort-bar {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+}
+
+.article-list-sort {
+  font-size: large;
 }

@@ -9,10 +9,10 @@ export default function Header() {
     <nav>
       <ul className="menu">
         <Link to={'/'}><li>NC News</li></Link>
-        <Link to='/topics'><li>Topics</li></Link>
-        <Link to='/articles'><li>Articles</li></Link>
-        <li>Users</li>
-        <button className='add-article'>+</button>
+        <Link to={'/topics'}><li>Topics</li></Link>
+        <Link to={'/articles'}><li>Articles</li></Link>
+        <Link to={'/users'}><li>Users</li></Link>
+        <li>Post</li>
         <li>{signedInUser.username}</li>
       </ul>
     </nav>

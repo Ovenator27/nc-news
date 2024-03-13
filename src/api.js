@@ -35,3 +35,7 @@ export function getTopics () {
 export function getArticlesByTopic (topic) {
     return api.get(`topics/${topic}`)
 }
+
+export function getAllUsers () {
+    return api.get(`users`)
+}

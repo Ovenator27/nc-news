@@ -15,13 +15,15 @@ export default function Articles() {
 
   useEffect(() => {
     setisLoading(true);
-    getAllArticles(page, sortBy, orderBy).then(({ data: { articles, total_count } }) => {
-      setPageCount(Math.ceil(total_count / 10));
-      setArticleList(articles);
-      window.scrollTo(0, 0);
-      setSearchParams({sort_by: sortBy, order_by: orderBy})
-      setisLoading(false);
-    });
+    getAllArticles(page, sortBy, orderBy).then(
+      ({ data: { articles, total_count } }) => {
+        setPageCount(Math.ceil(total_count / 10));
+        setArticleList(articles);
+        window.scrollTo(0, 0);
+        setSearchParams({ sort_by: sortBy, order_by: orderBy });
+        setisLoading(false);
+      }
+    );
   }, [page, sortBy, orderBy]);
 
   function handleOrderBy(e) {
@@ -43,6 +45,7 @@ export default function Articles() {
         <div>
           <label>Sort articles by: </label>
           <select
+            className="article-list-sort"
             value={sortBy}
             onChange={(e) => {
               setSortBy(e.target.value);

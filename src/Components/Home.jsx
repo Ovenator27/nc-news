@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <h1>Welcome to NC News!</h1>
       <h2>Check out the hottest articles right now!</h2>
-      <ul>
+      <ul className="article-list">
         {popularArticleList.map((article)=> {
            return <Link
             key={article.article_id}
