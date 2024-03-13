@@ -9,7 +9,7 @@ export default function Header() {
     <nav>
       <ul className="menu">
         <div className="menu-links">
-        <Link to={'/'}><li className="menu-item">NC News</li></Link>
+        <Link to={'/'} className="menu-item"><li >NC News</li></Link>
         <Link to={'/topics'} className="menu-item"><li>Topics</li></Link>
         <Link to={'/articles'} className="menu-item"><li>Articles</li></Link>
         <Link to={'/users'} className="menu-item"><li>Users</li></Link>
