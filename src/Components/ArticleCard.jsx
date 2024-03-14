@@ -1,8 +1,10 @@
+import UserContext from "../Contexts/SignedInUser";
 import { patchArticle } from "../api";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function ArticleCard({ article, setArticleList }) {
   const [voteError, setVoteError] = useState(null);
+  const {signedInUser} = useContext(UserContext)
 
   function handleLike(e) {
     e.preventDefault();
@@ -44,14 +46,14 @@ export default function ArticleCard({ article, setArticleList }) {
         <p>{article.comment_count} comments</p>
         <div>
         {article.votes} votes{" "}
-        <div>
+      {signedInUser.username !== "" && <div>
           <button value={article.article_id} id="1" onClick={handleLike}>
             +
           </button>
           <button value={article.article_id} id="-1" onClick={handleLike}>
             -
           </button>{" "}
-          </div>
+          </div>}
         </div>
         <p>topic: {article.topic}</p>
       </div>

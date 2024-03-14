@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import CommentCard from "./CommentCard";
 import UserContext from "../Contexts/SignedInUser";
@@ -74,27 +74,37 @@ export default function SingleArticle() {
   ) : (
     <>
       <div className="single-article-wrapper">
-        <ArticleCard className="single-article" article={articleInfo[0]} setArticleList={setArticleInfo} />
+        <ArticleCard
+          className="single-article"
+          article={articleInfo[0]}
+          setArticleList={setArticleInfo}
+        />
       </div>
       <div className="comment-list">
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="comment-body">
-            Comment as {signedInUser.username}
-          </label>
-          <br/>
-          <textarea
-            className="comment-input"
-            id="comment-body"
-            value={commentInput}
-            placeholder={`Add a comment for ${articleInfo[0].author}`}
-            onChange={(e) => {
-              setCommentInput(e.target.value);
-            }}
-            required
-          ></textarea>
-          <div className="error-text">{commentError}</div>
-          <button>Comment</button>
-        </form>
+        {signedInUser.username === "" ? (
+          <p style={{alignSelf: "center"}}>
+            <Link to={"/users"}>Sign in</Link> to comment
+          </p>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="comment-body">
+              Comment as {signedInUser.username}
+            </label>
+            <br />
+            <textarea
+              className="comment-input"
+              id="comment-body"
+              value={commentInput}
+              placeholder={`Add a comment for ${articleInfo[0].author}`}
+              onChange={(e) => {
+                setCommentInput(e.target.value);
+              }}
+              required
+            ></textarea>
+            <div className="error-text">{commentError}</div>
+            <button>Comment</button>
+          </form>
+        )}
         <ul>
           {commentsList.map((comment) => {
             return <CommentCard comment={comment} key={comment.comment_id} />;

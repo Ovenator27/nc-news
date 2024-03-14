@@ -3,7 +3,7 @@ import UserContext from "../Contexts/SignedInUser";
 import { getAllUsers } from "../api";
 import UserCard from "./UserCard";
 
-export default function Users() {
+export default function Users({signedOutUser}) {
   const [usersList, setUsersList] = useState([]);
   const { signedInUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,7 +21,7 @@ export default function Users() {
       <h1>Users</h1>
       <ul className="user-list">
         {usersList.map((user)=> {
-            return <UserCard key={user.username} user={user} />
+            return <UserCard signedOutUser={signedOutUser} key={user.username} user={user} />
         })}
       </ul>
     </>
