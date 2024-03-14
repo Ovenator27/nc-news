@@ -163,6 +163,7 @@ form {
 
 .delete-button {
   background-color: rgb(255, 119, 119);
+  margin-bottom: 10px;
 }
 
 .error-text {
