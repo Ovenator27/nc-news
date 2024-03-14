@@ -18,7 +18,11 @@ function App() {
     avatar_url:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5GOMxZRRvTEzYHX3-XuiZ5PqYRXQJ4APh3-vmINzcX8MkxEHbD8nyR7DOx84Rd-Ff0xU&usqp=CAU",
   }
-  const [signedInUser, setSignedInUser] = useState(signedOutUser);
+  
+  const [signedInUser, setSignedInUser] = useState({
+  username: "tickle122",
+  name: "Tom Tickle",
+  avatar_url: "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953"});
 
   return (
     <>

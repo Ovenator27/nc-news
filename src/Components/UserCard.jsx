@@ -6,12 +6,10 @@ export default function UserCard({ user, signedOutUser }) {
 
   function handleSignIn() {
     setSignedInUser(user)
-    localStorage.setItem('user', user)
   }
 
   function handleSignOut () {
     setSignedInUser(signedOutUser)
-    localStorage.setItem('user', signedOutUser)
   }
 
   return (
