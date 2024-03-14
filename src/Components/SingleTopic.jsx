@@ -25,6 +25,7 @@ export default function SingleTopic() {
   return isLoading ? ( <h1>Loading Articles</h1>) : (
     <>
     <h1>Articles about {slug}</h1>
+    <div className="article-list-wrapper">
     <ul className="article-list">
         {articlesByTopicList.map((article) => {
             return <Link
@@ -35,6 +36,7 @@ export default function SingleTopic() {
           </Link>
         })}
     </ul>
+    </div>
     </>
   )
 }

@@ -73,7 +73,9 @@ export default function SingleArticle() {
     <h1>Loading Article</h1>
   ) : (
     <>
-      <ArticleCard article={articleInfo[0]} setArticleList={setArticleInfo} />
+      <div className="single-article-wrapper">
+        <ArticleCard className="single-article" article={articleInfo[0]} setArticleList={setArticleInfo} />
+      </div>
       <div className="comment-list">
         <form onSubmit={handleSubmit}>
           <label htmlFor="comment-body">

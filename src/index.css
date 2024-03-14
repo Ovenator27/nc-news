@@ -1,9 +1,7 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: verdana, arial, helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +26,11 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  color: white;
+}
+
+h2 {
+  color: white;
 }
 
 button {

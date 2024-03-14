@@ -40,7 +40,6 @@ export default function Articles() {
   ) : (
     <>
       <h1>Articles</h1>
-      <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <div className="sort-bar">
         <div>
           <label>Sort articles by: </label>
@@ -61,6 +60,8 @@ export default function Articles() {
           <button onClick={handleOrderBy}>{orderBy}ending</button>
         </div>
       </div>
+            <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
+      <div className="article-list-wrapper">
       <ul className="article-list">
         {articleList.map((article) => {
           return (
@@ -73,6 +74,7 @@ export default function Articles() {
           );
         })}
       </ul>
+      </div>
       <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <p>Page: {page}</p>
     </>

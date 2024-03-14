@@ -1,5 +1,6 @@
 body {
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
 
 #root {
@@ -11,8 +12,8 @@ body {
 
 nav {
   border: black solid;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: rgb(30, 30, 40);
 }
 
 ul {
@@ -36,16 +37,17 @@ ul {
 }
 
 .menu-item {
-  color: black;
+  color: white;
   padding: 5px;
-  background-color: rgb(220, 220, 220);
-  border-radius: 10px;
+  /* background-color: rgb(220, 220, 220); */
+  border-radius: 5px;
   margin: 5px 0px;
 }
 
 .header-user {
   display: flex;
-  border: solid rgb(85, 85, 85);
+  background-color: white;
+  border: solid rgb(30, 30, 40);;
   box-sizing: border-box;
   border-radius: 15px;
   padding: 5px;
@@ -60,11 +62,20 @@ ul {
   font-size: large;
 }
 
+.article-list-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
 .article-list,
 .comment-list {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.article-list {
+  max-width: 700px;
 }
 
 .topic-list, .user-list {
@@ -76,8 +87,8 @@ ul {
 .comment-list {
   align-items: flex-start;
   border: solid black;
-  border-radius: 10px;
-  background-color: white;
+  border-radius: 5px;
+  background-color: rgb(30, 30, 40);;
   padding: 10px 20px;
 }
 
@@ -87,16 +98,11 @@ ul {
   display: flex;
   flex-direction: column;
   margin: 10px;
-  border: solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   list-style: none;
-  background-color: white;
-  color: black;
+  background-color:rgb(30, 30, 40);
+  color: white;
   padding: 10px;
-}
-
-.article-card {
-  max-width: 700px;
 }
 
 .topic-card {
@@ -126,8 +132,8 @@ ul {
 }
 
 .article-card-footer {
-  background-color: rgb(220, 220, 220);
-  border-radius: 10px;
+  border: solid rgb(65, 65, 65);
+  border-radius: 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -146,6 +152,8 @@ form {
 }
 
 .comment-input {
+  background-color: rgb(30, 30, 40);
+  color: white;
   margin-top: 10px;
   width: 100%;
   height: 10em;

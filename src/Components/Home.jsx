@@ -19,8 +19,9 @@ export default function Home() {
     <h1>Loading Articles</h1>
   ) : (
     <>
-      <h1>Welcome to NC News!</h1>
-      <h2>Check out the hottest articles right now!</h2>
+      <h1><em>NC News</em></h1>
+      <h2>Check out the hottest articles right now</h2>
+      <div className="article-list-wrapper">
       <ul className="article-list">
         {popularArticleList.map((article)=> {
            return <Link
@@ -31,6 +32,7 @@ export default function Home() {
           </Link>
         })}
       </ul>
+      </div>
     </>
   );
 }
