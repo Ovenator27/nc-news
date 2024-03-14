@@ -22,7 +22,7 @@ export default function UserCard({ user, signedOutUser }) {
         <button id={user} onClick={handleSignIn}>
           Sign in
         </button>
-      ) : <button id={user} onClick={handleSignOut}>
+      ) : <button id={user} onClick={handleSignOut} style={{backgroundColor: "rgb(255, 119, 119)"}}>
       Sign out
     </button>}
     </li>
