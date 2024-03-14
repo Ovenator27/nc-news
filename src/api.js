@@ -24,6 +24,10 @@ export function postComment (articleId, body) {
     return api.post(`articles/${articleId}/comments`, body)
 }
 
+export function patchComment (commentId, body) {
+    return api.patch(`comments/${commentId}`, body)
+}
+
 export function deleteComment (commentId) {
     return api.delete(`comments/${commentId}`)
 }
@@ -47,3 +51,4 @@ export function postArticle (body) {
 export function deleteArticle (articleId) {
     return api.delete(`articles/${articleId}`)
 }
+

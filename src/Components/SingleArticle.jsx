@@ -135,7 +135,7 @@ export default function SingleArticle() {
         )}
         <ul>
           {commentsList.map((comment) => {
-            return <CommentCard comment={comment} key={comment.comment_id} />;
+            return <CommentCard comment={comment} key={comment.comment_id} setCommentsList={setCommentsList}/>;
           })}
         </ul>
       </div>

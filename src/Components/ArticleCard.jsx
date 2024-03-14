@@ -3,9 +3,9 @@ import { patchArticle } from "../api";
 import { useContext, useState } from "react";
 
 export default function ArticleCard({ article, setArticleList, canVote }) {
-  const [voteError, setVoteError] = useState(null);
   const { signedInUser } = useContext(UserContext);
   const [vote, setVote] = useState(null);
+  const [voteError, setVoteError] = useState(null);
 
   function handleVote(e) {
     e.preventDefault();
