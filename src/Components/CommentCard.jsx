@@ -4,15 +4,16 @@ import { deleteComment } from "../api";
 
 export default function CommentCard({ comment }) {
   const { signedInUser } = useContext(UserContext);
-  const [deleted, setDeleted] = useState(false);
+  const [commentDeleted, setCommentDeleted] = useState(false);
 
   function handleCommentDelete(e) {
     e.preventDefault();
-    setDeleted(true);
-    deleteComment(e.target.value);
+    deleteComment(e.target.value).then(() => {
+      setCommentDeleted(true);
+    });
   }
 
-  return deleted ? (
+  return commentDeleted ? (
     <li className="comment-card">
       <h3>{comment.author}:</h3>
       <p>Comment Deleted</p>

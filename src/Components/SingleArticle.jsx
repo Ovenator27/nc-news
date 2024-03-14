@@ -3,7 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import CommentCard from "./CommentCard";
 import UserContext from "../Contexts/SignedInUser";
-import { deleteArticle, getComments, getSingleArticle, postComment } from "../api";
+import {
+  deleteArticle,
+  getComments,
+  getSingleArticle,
+  postComment,
+} from "../api";
 
 export default function SingleArticle() {
   const { articleId } = useParams();
@@ -14,7 +19,8 @@ export default function SingleArticle() {
   const [commentInput, setCommentInput] = useState("");
   const [commentSubmit, setCommentSubmit] = useState(false);
   const [commentError, setCommentError] = useState(null);
-  const [canVote, setCanVote] = useState(true)
+  const [canVote, setCanVote] = useState(true);
+  const [articleDeleted, setArticleDeleted] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -63,9 +69,11 @@ export default function SingleArticle() {
     }
   }
 
-  function handleDeleteArticle (e) {
-    e.preventDefault()
-    deleteArticle(articleId)
+  function handleDeleteArticle(e) {
+    e.preventDefault();
+    deleteArticle(articleId).then(() => {
+      setArticleDeleted(true);
+    });
   }
 
   if (error) {
@@ -73,6 +81,16 @@ export default function SingleArticle() {
       <h1>
         {error.status}: {error.data.msg}
       </h1>
+    );
+  }
+  if (articleDeleted) {
+    return (
+      <>
+        <h1>Article Deleted</h1>
+        <Link to={"/articles"}>
+          <button style={{ color: "black" }}>Return to articles</button>
+        </Link>
+      </>
     );
   }
   return isLoading ? (
@@ -87,10 +105,12 @@ export default function SingleArticle() {
           canVote={canVote}
         />
       </div>
-      <button className="red-button" onClick={handleDeleteArticle}>Delete article</button>
+      <button className="red-button" onClick={handleDeleteArticle}>
+        Delete article
+      </button>
       <div className="comment-list">
         {signedInUser.username === "" ? (
-          <p style={{alignSelf: "center"}}>
+          <p style={{ alignSelf: "center" }}>
             <Link to={"/users"}>Sign in</Link> to comment
           </p>
         ) : (

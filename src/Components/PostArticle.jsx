@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import UserContext from "../Contexts/SignedInUser";
 import { getTopics, postArticle } from "../api";
+import ArticleCard from "./ArticleCard";
+import { Link } from "react-router-dom";
 
 export default function PostArticle({ topicList, setTopicList }) {
   const { signedInUser } = useContext(UserContext);
@@ -10,6 +12,7 @@ export default function PostArticle({ topicList, setTopicList }) {
   const [postBodyInput, setPostBodyInput] = useState("");
   const [postImgUrlInput, setPostImgUrlInput] = useState("");
   const [postSubmitting, setPostSubmitting] = useState(false);
+  const [newArticleInfo, setNewArticleInfo] = useState([]);
   const [postSubmittedSuccessfully, setPostSubmittedSuccessfully] =
     useState(false);
   const [postError, setPostError] = useState(null);
@@ -35,6 +38,7 @@ export default function PostArticle({ topicList, setTopicList }) {
       };
       postArticle(body)
         .then(({ data: { article } }) => {
+          setNewArticleInfo(article);
           setPostTitleInput("");
           setPostTopicInput("");
           setPostBodyInput("");
@@ -50,8 +54,25 @@ export default function PostArticle({ topicList, setTopicList }) {
 
   return isLoading ? (
     <h1>Loading</h1>
+  ) : postSubmittedSuccessfully ? (
+    <>
+      <h1>Post submit successful</h1>
+      <button
+        onClick={() => {
+          setPostSubmittedSuccessfully(false);
+        }}
+      >
+        Post another article
+      </button>
+      <Link to={"/articles"}>
+        <button style={{ color: "black" }}>Go to articles list</button>
+      </Link>
+      <h2>View your new article below:</h2>
+      <div className="single-article-wrapper">
+        <ArticleCard className="single-article" article={newArticleInfo} />
+      </div>
+    </>
   ) : (
-    postSubmittedSuccessfully ? <h1>Post submit successful</h1> :
     <>
       <h1>Post a new article</h1>
       <div className="post-article-wrapper">
@@ -83,7 +104,11 @@ export default function PostArticle({ topicList, setTopicList }) {
           >
             <option value="">- Choose a topic -</option>
             {topicList.map((topic) => {
-              return <option key={topic.slug} value={topic.slug}>{topic.slug}</option>;
+              return (
+                <option key={topic.slug} value={topic.slug}>
+                  {topic.slug}
+                </option>
+              );
             })}
           </select>
           <label className="post-label" htmlFor="post-body">
