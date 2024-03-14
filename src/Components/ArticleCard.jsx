@@ -86,7 +86,7 @@ export default function ArticleCard({ article, setArticleList, canVote }) {
           {article.votes} votes{" "}
           {signedInUser.username !== "" && canVote &&
             (vote === null ? (
-              <div>
+              <div className="vote-button-wrapper">
                 <button className="vote-button" value={article.article_id} id="1" onClick={handleVote}>
                   +
                 </button>

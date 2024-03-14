@@ -144,9 +144,26 @@ ul {
   text-indent: 10px;
 }
 
+.comment-votes {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.comment-vote-count {
+  margin: 0px 10px;
+}
+
+.vote-button-wrapper {
+  display: flex;
+}
+
 .vote-button {
-  margin-left: 0;
-  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
 }
 
 form {

@@ -85,11 +85,11 @@ export default function CommentCard({ comment, setCommentsList }) {
     <li className="comment-card">
       <h3>{comment.author}:</h3>
       <p>{comment.body}</p>
-      <div>
-          {comment.votes} votes{" "}
+      <div className="comment-votes">
+          <p className="comment-vote-count">{comment.votes} votes{" "}</p>
           {signedInUser.username !== "" &&
             (vote === null ? (
-              <div>
+              <div className="vote-button-wrapper">
                 <button className="vote-button" value={comment.comment_id} id="1" onClick={handleVote}>
                   +
                 </button>
