@@ -38,7 +38,7 @@ export default function ArticleCard({ article, setArticleList }) {
         <h2>{article.title}</h2>
         <p>posted by: {article.author}</p>
       </div>
-      <img className="article-card-img" src={article.article_img_url} />
+      <img className="article-card-img" src={article.article_img_url} alt="article image"/>
       <p>{article.body}</p>
       <div className="article-card-footer">
         <p>{article.comment_count} comments</p>

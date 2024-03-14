@@ -81,7 +81,7 @@ export default function SingleArticle() {
           <label htmlFor="comment-body">
             Comment as {signedInUser.username}
           </label>
-          <br />
+          <br/>
           <textarea
             className="comment-input"
             id="comment-body"

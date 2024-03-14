@@ -15,7 +15,7 @@ export default function Header() {
         <Link to={'/users'} className="menu-item"><li>Users</li></Link>
         <li className="menu-item">Post</li>
         </div>
-        <li className="header-user"><img src={signedInUser.avatar_url} className="header-user-img"/></li>
+        <li className="header-user"><img src={signedInUser.avatar_url} alt="user avatar" className="header-user-img"/></li>
       </ul>
     </nav>
   );

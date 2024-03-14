@@ -1,10 +1,24 @@
+import { useContext } from "react";
+import UserContext from "../Contexts/SignedInUser";
+
 export default function UserCard({ user }) {
+  const { signedInUser, setSignedInUser } = useContext(UserContext);
+
+  function handleSignIn(e) {
+    setSignedInUser(user)
+  }
+
   return (
     <li className="user-card">
       <div className="user-img-box">
-        <img className="user-img" src={user.avatar_url} />
+        <img className="user-img" src={user.avatar_url} alt="user avatar" />
       </div>
       <h2>{user.username}</h2>
+      {user.username !== signedInUser.username && (
+        <button id={user} onClick={handleSignIn}>
+          Sign in
+        </button>
+      )}
     </li>
   );
 }
