@@ -39,3 +39,11 @@ export function getArticlesByTopic (topic) {
 export function getAllUsers () {
     return api.get(`users`)
 }
+
+export function postArticle (body) {
+    return api.post(`articles/`, body)
+}
+
+export function deleteArticle (articleId) {
+    return api.delete(`articles/${articleId}`)
+}

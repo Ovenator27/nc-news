@@ -6,7 +6,7 @@ export default function CommentCard({ comment }) {
   const { signedInUser } = useContext(UserContext);
   const [deleted, setDeleted] = useState(false);
 
-  function handleDelete(e) {
+  function handleCommentDelete(e) {
     e.preventDefault();
     setDeleted(true);
     deleteComment(e.target.value);
@@ -26,7 +26,7 @@ export default function CommentCard({ comment }) {
         <button
           value={comment.comment_id}
           className="red-button"
-          onClick={handleDelete}
+          onClick={handleCommentDelete}
         >
           delete comment
         </button>

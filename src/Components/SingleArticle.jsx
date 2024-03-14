@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import ArticleCard from "./ArticleCard";
 import CommentCard from "./CommentCard";
 import UserContext from "../Contexts/SignedInUser";
-import { getComments, getSingleArticle, postComment } from "../api";
+import { deleteArticle, getComments, getSingleArticle, postComment } from "../api";
 
 export default function SingleArticle() {
   const { articleId } = useParams();
@@ -41,7 +41,7 @@ export default function SingleArticle() {
       });
   }, []);
 
-  function handleSubmit(e) {
+  function handleCommentSubmit(e) {
     if (commentSubmit === false) {
       setCommentSubmit(true);
       e.preventDefault();
@@ -63,6 +63,11 @@ export default function SingleArticle() {
     }
   }
 
+  function handleDeleteArticle (e) {
+    e.preventDefault()
+    deleteArticle(articleId)
+  }
+
   if (error) {
     return (
       <h1>
@@ -82,13 +87,14 @@ export default function SingleArticle() {
           canVote={canVote}
         />
       </div>
+      <button className="red-button" onClick={handleDeleteArticle}>Delete article</button>
       <div className="comment-list">
         {signedInUser.username === "" ? (
           <p style={{alignSelf: "center"}}>
             <Link to={"/users"}>Sign in</Link> to comment
           </p>
         ) : (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleCommentSubmit}>
             <label htmlFor="comment-body">
               Comment as {signedInUser.username}
             </label>

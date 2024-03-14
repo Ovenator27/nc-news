@@ -13,7 +13,7 @@ export default function Header() {
         <Link to={'/topics'} className="menu-item"><li>Topics</li></Link>
         <Link to={'/articles'} className="menu-item"><li>Articles</li></Link>
         <Link to={'/users'} className="menu-item"><li>Users</li></Link>
-        <li className="menu-item">Post</li>
+        <Link to={'/post-article'} className="menu-item"><li >Post</li></Link>
         </div>
         <li className="header-user"><img src={signedInUser.avatar_url} alt="user avatar" className="header-user-img"/></li>
       </ul>
