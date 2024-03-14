@@ -161,7 +161,7 @@ form {
   height: 10em;
 }
 
-.delete-button {
+.red-button {
   background-color: rgb(255, 119, 119);
   margin-bottom: 10px;
 }

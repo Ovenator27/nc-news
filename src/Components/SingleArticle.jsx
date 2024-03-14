@@ -14,6 +14,7 @@ export default function SingleArticle() {
   const [commentInput, setCommentInput] = useState("");
   const [commentSubmit, setCommentSubmit] = useState(false);
   const [commentError, setCommentError] = useState(null);
+  const [canVote, setCanVote] = useState(true)
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -78,6 +79,7 @@ export default function SingleArticle() {
           className="single-article"
           article={articleInfo[0]}
           setArticleList={setArticleInfo}
+          canVote={canVote}
         />
       </div>
       <div className="comment-list">

@@ -25,7 +25,7 @@ export default function CommentCard({ comment }) {
       {signedInUser.username === comment.author && (
         <button
           value={comment.comment_id}
-          className="delete-button"
+          className="red-button"
           onClick={handleDelete}
         >
           delete comment
