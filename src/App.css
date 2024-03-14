@@ -141,6 +141,12 @@ ul {
   list-style: none;
   text-align: left;
   border-bottom: solid black;
+  text-indent: 10px;
+}
+
+.vote-button {
+  margin-left: 0;
+  width: 40px;
 }
 
 form {

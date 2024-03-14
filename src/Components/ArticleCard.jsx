@@ -87,10 +87,10 @@ export default function ArticleCard({ article, setArticleList, canVote }) {
           {signedInUser.username !== "" && canVote &&
             (vote === null ? (
               <div>
-                <button value={article.article_id} id="1" onClick={handleVote}>
+                <button className="vote-button" value={article.article_id} id="1" onClick={handleVote}>
                   +
                 </button>
-                <button value={article.article_id} id="-1" onClick={handleVote}>
+                <button className="vote-button" value={article.article_id} id="-1" onClick={handleVote}>
                   -
                 </button>{" "}
               </div>

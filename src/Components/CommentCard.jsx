@@ -90,10 +90,10 @@ export default function CommentCard({ comment, setCommentsList }) {
           {signedInUser.username !== "" &&
             (vote === null ? (
               <div>
-                <button value={comment.comment_id} id="1" onClick={handleVote}>
+                <button className="vote-button" value={comment.comment_id} id="1" onClick={handleVote}>
                   +
                 </button>
-                <button value={comment.comment_id} id="-1" onClick={handleVote}>
+                <button className="vote-button" value={comment.comment_id} id="-1" onClick={handleVote}>
                   -
                 </button>{" "}
               </div>
