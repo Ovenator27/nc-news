@@ -69,7 +69,7 @@ export default function ArticleCard({ article, setArticleList, canVote }) {
   }
 
   return (
-    <li className="article-card">
+    <div className="article-card">
       <div className="article-card-header">
         <h2>{article.title}</h2>
         <p>posted by: {article.author}</p>
@@ -105,6 +105,6 @@ export default function ArticleCard({ article, setArticleList, canVote }) {
         <p>topic: {article.topic}</p>
       </div>
       <div className="error-text">{voteError}</div>
-    </li>
+    </div>
   );
 }

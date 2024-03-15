@@ -28,12 +28,11 @@ export default function SingleTopic() {
     <div className="article-list-wrapper">
     <ul className="article-list">
         {articlesByTopicList.map((article) => {
-            return <Link
-            key={article.article_id}
+            return <li key={article.article_id}><Link
             to={`/articles/${article.article_id}`}
           >
             <ArticleCard article={article} setArticleList={setArticlesByTopicList} />
-          </Link>
+          </Link></li>
         })}
     </ul>
     </div>

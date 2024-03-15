@@ -17,26 +17,26 @@ export default function CommentCard({ comment, setCommentsList }) {
 
   function handleVote(e) {
     e.preventDefault();
-    setVote(e.target.id);
+    setVote(e.target.value);
     setCommentsList((currList) => {
       const newList = currList.map((item) => {
-        if (item.comment_id === +e.target.value) {
-          item.votes = item.votes + +e.target.id;
+        if (item.comment_id === +e.target.id) {
+          item.votes = item.votes + +e.target.value;
         }
         return item;
       });
       return newList;
     });
     const body = {
-      inc_votes: e.target.id,
+      inc_votes: e.target.value,
     };
-    patchComment(e.target.value, body).catch((err) => {
+    patchComment(e.target.id, body).catch((err) => {
       setVote(null);
       setVoteError(`${err.message} - vote failed`);
       setCommentsList((currList) => {
         const newList = currList.map((item) => {
-          if (item.comment_id === +e.target.value) {
-            item.votes = item.votes - +e.target.id;
+          if (item.comment_id === +e.target.id) {
+            item.votes = item.votes - +e.target.value;
           }
           return item;
         });
@@ -51,7 +51,7 @@ export default function CommentCard({ comment, setCommentsList }) {
     setVote(null);
     setCommentsList((currList) => {
       const newList = currList.map((item) => {
-        if (item.comment_id === +e.target.value) {
+        if (item.comment_id === +e.target.id) {
           item.votes = item.votes - prevVote;
         }
         return item;
@@ -61,12 +61,12 @@ export default function CommentCard({ comment, setCommentsList }) {
     const body = {
       inc_votes: -prevVote,
     };
-    patchComment(e.target.value, body).catch((err) => {
+    patchComment(e.target.id, body).catch((err) => {
       setVote(vote);
       setVoteError(`${err.message} - undo vote failed`);
       setCommentsList((currList) => {
         const newList = currList.map((item) => {
-          if (item.comment_id === +e.target.value) {
+          if (item.comment_id === +e.target.id) {
             item.votes = item.votes + +prevVote;
           }
           return item;
@@ -85,26 +85,6 @@ export default function CommentCard({ comment, setCommentsList }) {
     <li className="comment-card">
       <h3>{comment.author}:</h3>
       <p>{comment.body}</p>
-      <div className="comment-votes">
-          <p className="comment-vote-count">{comment.votes} votes{" "}</p>
-          {signedInUser.username !== "" &&
-            (vote === null ? (
-              <div className="vote-button-wrapper">
-                <button className="vote-button" value={comment.comment_id} id="1" onClick={handleVote}>
-                  +
-                </button>
-                <button className="vote-button" value={comment.comment_id} id="-1" onClick={handleVote}>
-                  -
-                </button>{" "}
-              </div>
-            ) : (
-              <div>
-                <button className="red-button" value={comment.comment_id} onClick={handleUndoVote}>
-                  undo vote
-                </button>
-              </div>
-            ))}
-        </div>
       {signedInUser.username === comment.author && (
         <button
           value={comment.comment_id}
@@ -114,6 +94,26 @@ export default function CommentCard({ comment, setCommentsList }) {
           delete comment
         </button>
       )}
+      <div className="comment-votes">
+          <p className="comment-vote-count">{comment.votes} votes{" "}</p>
+          {signedInUser.username !== "" &&
+            (vote === null ? (
+              <div className="vote-button-wrapper">
+                <button className="vote-button" value="1" id={comment.comment_id} onClick={handleVote}>
+                  +
+                </button>
+                <button className="vote-button" value="-1" id={comment.comment_id} onClick={handleVote}>
+                  -
+                </button>{" "}
+              </div>
+            ) : (
+              <div>
+                <button className="red-button" id={comment.comment_id} onClick={handleUndoVote}>
+                  undo vote
+                </button>
+              </div>
+            ))}
+        </div>
     </li>
   );
 }

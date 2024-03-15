@@ -40,11 +40,13 @@ export default function Articles() {
   ) : (
     <>
       <h1>Articles</h1>
-      <div className="sort-bar">
+
         <div>
-          <label>Sort articles by: </label>
+          <label htmlFor="sort">Sort articles by: </label>
           <select
+          style={{marginRight:"20px"}}
             className="article-list-sort"
+            id="sort"
             value={sortBy}
             onChange={(e) => {
               setSortBy(e.target.value);
@@ -54,26 +56,25 @@ export default function Articles() {
             <option value="comment_count">comments</option>
             <option value="votes">votes</option>
           </select>
+          <label htmlFor="order-button">Order by:</label>
+          <button id="order-button"onClick={handleOrderBy}>{orderBy}ending</button>
         </div>
-        <div>
-          <label>Order by:</label>
-          <button onClick={handleOrderBy}>{orderBy}ending</button>
-        </div>
-      </div>
-            <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
+      <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <div className="article-list-wrapper">
-      <ul className="article-list">
-        {articleList.map((article) => {
-          return (
-            <Link
-              key={article.article_id}
-              to={`/articles/${article.article_id}`}
-            >
-              <ArticleCard article={article} setArticleList={setArticleList} />
-            </Link>
-          );
-        })}
-      </ul>
+        <ul className="article-list">
+          {articleList.map((article) => {
+            return (
+              <li key={article.article_id}><Link
+                to={`/articles/${article.article_id}`}
+              >
+                <ArticleCard
+                  article={article}
+                  setArticleList={setArticleList}
+                />
+              </Link></li>
+            );
+          })}
+        </ul>
       </div>
       <ChangePage setPage={setPage} page={page} pageCount={pageCount} />
       <p>Page: {page}</p>

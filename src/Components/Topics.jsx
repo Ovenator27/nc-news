@@ -22,10 +22,10 @@ export default function Topics({topicList, setTopicList}) {
       <ul className="topic-list">
         {topicList.map((topic) => {
           return (
-            <Link key={topic.slug} to={`/topics/${topic.slug}`}>
+            <li key={topic.slug} className="topic-card"><Link to={`/topics/${topic.slug}`}>
               {" "}
               <TopicCard topic={topic} />
-            </Link>
+            </Link></li>
           );
         })}
       </ul>

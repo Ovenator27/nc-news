@@ -19,10 +19,10 @@ export default function UserCard({ user, signedOutUser }) {
       </div>
       <h2>{user.username}</h2>
       {user.username !== signedInUser.username ? (
-        <button id={user} onClick={handleSignIn}>
+        <button onClick={handleSignIn}>
           Sign in
         </button>
-      ) : <button id={user} onClick={handleSignOut} className="red-button">
+      ) : <button onClick={handleSignOut} className="red-button">
       Sign out
     </button>}
     </li>
